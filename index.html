@@ -34,6 +34,13 @@
     h1{margin:0;font-size:28px;font-weight:800;}
     p{margin:4px 0;}
     .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;margin-top:24px;}
+    .card {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform 0.15s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+}
     h2{margin-top:0;font-size:20px;}
     footer{text-align:center;color:var(--muted);margin-top:36px;}
     a{color:var(--link);text-decoration:none;}
