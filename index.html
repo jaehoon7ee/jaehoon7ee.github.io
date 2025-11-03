@@ -8,52 +8,61 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg:#fff; --fg:#111827; --muted:#6b7280;
-      --link:#2563eb; --card:#f9fafb; --border:#e5e7eb;
-    }
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,sans-serif;line-height:1.6;color:var(--fg);background:radial-gradient(1200px 600px at 80% -10%,rgba(99,102,241,0.07),rgba(0,0,0,0)),radial-gradient(1000px 500px at -10% 10%,rgba(16,185,129,0.06),rgba(0,0,0,0)),var(--bg);}
+    :root { --bg:#fff; --fg:#111827; --muted:#6b7280; --link:#2563eb; --card:#f9fafb; --border:#e5e7eb; }
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,sans-serif;line-height:1.6;color:var(--fg);
+      background:radial-gradient(1200px 600px at 80% -10%,rgba(99,102,241,0.07),rgba(0,0,0,0)),
+                 radial-gradient(1000px 500px at -10% 10%,rgba(16,185,129,0.06),rgba(0,0,0,0)),var(--bg);}
+    html { scroll-behavior: smooth; }
     .container{max-width:900px;margin:auto;padding:28px 20px;}
+
+    /* Sticky nav */
+    nav.site-nav{
+      position:sticky; top:0; z-index:1000;
+      background:var(--bg);
+      padding:10px 0;
+      border-bottom:1px solid var(--border);
+      margin-bottom:16px;
+    }
+    .site-nav .nav-row{
+      display:flex; gap:18px; align-items:center; justify-content:center; flex-wrap:wrap;
+    }
+    .site-nav a{
+      color:var(--muted); text-decoration:none; font-weight:600; padding:6px 8px; border-radius:8px;
+    }
+    .site-nav a:hover{ color:var(--fg); background:var(--card); border:1px solid var(--border); }
+
     header {
-  display: flex;
-  align-items: center;           /* vertically centers photo & text */
-  gap: 28px;                     /* adds breathing room */
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 22px 28px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* soft subtle shadow */
-}
-    .avatar {
-  width: 150px;
-  height: auto;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  background: #ddd;
-}
+      display:flex; align-items:center; gap:28px; background:var(--card);
+      border:1px solid var(--border); border-radius:20px; padding:22px 28px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.05);
+    }
+    .avatar { width:150px; height:auto; border-radius:14px; border:1px solid var(--border); background:#ddd; }
     h1{margin:0;font-size:28px;font-weight:800;}
     p{margin:4px 0;}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;margin-top:24px;}
-    .card {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  transition: transform 0.15s ease;
-}
-.card:hover {
-  transform: translateY(-2px);
-}
-    h2 {
-  font-size: 22px;
-  font-weight: 700;
-  border-bottom: 2px solid var(--border);
-  padding-bottom: 4px;
-  margin-bottom: 12px;
-}
+
+    .card{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px; margin-top:24px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.05); transition:transform .15s ease; }
+    .card:hover{ transform: translateY(-2px); }
+
+    h2{ font-size:22px; font-weight:700; border-bottom:2px solid var(--border); padding-bottom:4px; margin-bottom:12px; }
     footer{text-align:center;color:var(--muted);margin-top:36px;}
     a{color:var(--link);text-decoration:none;}
   </style>
 </head>
 <body>
   <div class="container">
+
+    <!-- Sticky top navigation -->
+    <nav class="site-nav" aria-label="Primary">
+      <div class="nav-row">
+        <a href="#about">About</a>
+        <a href="#working-papers">Research</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#contact">Contact</a>
+        <a href="#">Top</a>
+      </div>
+    </nav>
+
     <header>
       <img class="avatar" src="headshot.jpg" alt="Jaehoon Lee headshot" onerror="this.src='https://via.placeholder.com/120x120.png?text=Photo';">
       <div>
@@ -63,130 +72,120 @@
         <p>
           <a href="CV.pdf" target="_blank">📄 CV</a> ·
           <a href="mailto:jlee884@uic.edu">✉️ Email</a> ·
-          <a href="https://www.linkedin.com/in/jaehoon7ee" target="_blank">LinkedIn</a> ·
+          <a href="https://www.linkedin.com/in/jaehoon7ee" target="_blank">LinkedIn</a>
         </p>
       </div>
     </header>
 
-    <section class="card">
-  <h2>About</h2>
-  <p>
-    I am a Ph.D. candidate in Accounting at the University of Illinois Chicago. My research is broadly motivated by the problem of economic agents reneging on promises—whether in financial contracts, supply-chain relationships, or firms’ commitments to payouts. I study how accounting information helps mitigate these frictions by enhancing credibility, facilitating contract design, and sustaining cooperation among parties with conflicting incentives.
-  </p>
-      
-  <p>
-    My Job Market Paper ("Operational Risk and Financial Covenants") is the cornerstone of this agenda, examining how borrowers' operational risks—both demand-side (customer concentration and demand volatility) and supply-side (supplier dependence and fragility)—shape debt contract design and capital allocation. My broader research interests include financial contracting, supply-chain and operational risk, textual analysis of Item 1A risk factor disclosures, and applications of artificial intelligence in accounting.
-  </p>
-    </section> 
+    <section class="card" id="about">
+      <h2>About</h2>
+      <p>
+        I am a Ph.D. candidate in Accounting at the University of Illinois Chicago. My research is broadly motivated by the problem of economic agents reneging on promises—whether in financial contracts, supply-chain relationships, or firms’ commitments to payouts. I study how accounting information helps mitigate these frictions by enhancing credibility, facilitating contract design, and sustaining cooperation among parties with conflicting incentives.
+      </p>
+      <p>
+        My Job Market Paper ("Operational Risk and Financial Covenants") is the cornerstone of this agenda, examining how borrowers' operational risks—both demand-side (customer concentration and demand volatility) and supply-side (supplier dependence and fragility)—shape debt contract design and capital allocation. My broader research interests include financial contracting, supply-chain and operational risk, textual analysis of Item 1A risk factor disclosures, and applications of artificial intelligence in accounting.
+      </p>
+    </section>
 
-    <section class="card">
-  <h2>Working Papers</h2>
-  <ul>
-    <li><strong>Operational Risk and Financial Covenants</strong> — <em>Job Market Paper / Dissertation (2025)</em><br>
-      Examines how borrowers’ demand-side (customer concentration and demand volatility) and supply-side (supplier dependence and fragility) operational risks shape the design of debt covenants. Shows that demand-side risks are associated with performance covenants, while supply-side risks are associated with capital covenants, and that the association between supply-side risks and capital covenants strengthens under the Volcker Rule.
-    </li>
+    <section class="card" id="working-papers">
+      <h2>Working Papers</h2>
+      <ul>
+        <li><strong>Operational Risk and Financial Covenants</strong> — <em>Job Market Paper / Dissertation (2025)</em><br>
+          Examines how borrowers’ demand-side (customer concentration and demand volatility) and supply-side (supplier dependence and fragility) operational risks shape the design of debt covenants. Shows that demand-side risks are associated with performance covenants, while supply-side risks are associated with capital covenants, and that the association between supply-side risks and capital covenants strengthens under the Volcker Rule.
+        </li>
+        <li><strong>Beyond Earnings: The Role of Operating Performance in Shaping Payout Policy</strong> — with Ellen Engel, Stephanie Sikes, and Rustam Zufarov<br>
+          Investigates how firms' revenue versus expense triggered operational difficulties shape payout policy.
+        </li>
+        <li><strong>Soft Information and Loan Contract Design: The Role of Managerial Ability</strong> — with Peter Demerjian and Hyunjin Kim<br>
+          Studies how lenders incorporate managerial ability as soft information into loan contract terms.
+        </li>
+        <li><strong>Disclosure of Supply Chain Relationships</strong> — solo-authored<br>
+          Examines determinants and consequences of voluntary supplier disclosure, focusing on litigation risk and economic outcomes.
+        </li>
+      </ul>
 
-    <li><strong>Beyond Earnings: The Role of Operating Performance in Shaping Payout Policy</strong> — with Ellen Engel, Stephanie Sikes, and Rustam Zufarov<br>
-      Investigates how firms' revenue versus expense triggered operational difficulties shape payout policy.
-    </li>
+      <h2 style="margin-top:24px;">Works in Progress</h2>
+      <ul>
+        <li><strong>Supply Chain Disclosure and Lending</strong> — with Sangwook Nam</li>
+        <li><strong>Key Personnel and AI</strong> — with Jon Woo</li>
+      </ul>
+    </section>
 
-    <li><strong>Soft Information and Loan Contract Design: The Role of Managerial Ability</strong> — with Peter Demerjian and Hyunjin Kim<br>
-      Studies how lenders incorporate managerial ability as soft information into loan contract terms.
-    </li>
+    <section class="card" id="teaching">
+      <h2>Teaching</h2>
+      <p>
+        I strive to make accounting intuitive, interactive, and connected to real decisions. 
+        My teaching emphasizes the logic behind accounting systems—helping students see how financial reporting 
+        supports communication, discipline, and trust in business relationships. 
+        I also integrate data analytics and AI-driven tools to prepare students for the evolving business environment.
+      </p>
 
-    <li><strong>Disclosure of Supply Chain Relationships</strong> — solo-authored<br>
-      Examines determinants and consequences of voluntary supplier disclosure, focusing on litigation risk and economic outcomes.
-    </li>
-  </ul>
+      <h3>Instructor</h3>
+      <ul>
+        <li><strong>Introduction to Financial Accounting (ACTG 210)</strong> — Fall 2023<br>
+          Instructor Rating: 4.68 / 5.00 · Course Rating: 4.74 / 5.00 (Response Ratio: 38 / 39)
+        </li>
+      </ul>
 
-  <h2 style="margin-top:24px;">Works in Progress</h2>
-  <ul>
-    <li><strong>Supply Chain Disclosure and Lending</strong> — with Sangwook Nam<br>
-    </li>
+      <p style="margin-top:10px; color:var(--muted); font-weight:600;">
+        Selected student comments (Introduction to Financial Accounting, Fall 2023):
+      </p>
+      <blockquote style="margin-top:6px; border-left:4px solid var(--border); padding-left:12px; color:var(--muted); font-style:italic;">
+        <p>"Almost each lesson was beneficial for my well being"</p>
+        <p>“Instructor is very professional, encourage students to ask questions, and always available to help understand challenging topic.”</p>
+        <p>“Professor Lee's lectures facilitated discussion by encouraging students to ask questions, which was most beneficial to me. Unlike other
+          courses, I had the opportunity to practice problems in class, which made the class more engaging and improved my confidence in the
+          subject. By doing practice problems in class instead of passively watching a professor do problems like in other classes, I felt prepared
+          when it came time to do my homework. Furthermore, I appreciated Professor Lee's decision to devote adequate class time to reviewing
+          past exams. Instead of handing the graded exams to us and asking for it back one minute later, he made an effort to clear up any
+          conceptual errors we may've had before asking us to return the exams.”</p>
+        <p>“This class helps me to throughly learnt the details about the three major of financial statements which include income stamens, balance
+          sheet and state of cash flows. The accounting knowledge I gained in this class has laid a solid foundation for my future professional
+          courses. The professor is really responsible for student and able to capture my attention more effectively in class.”</p>
+        <p>“Professor Lee has stood out in a way that will be a lasting impression on me for years to come. I struggled at various points with pace and
+          professor Lee emailed me directly and stopped me after class to speak with me. He was encouraging and shared in inspiring ways.”</p>
+      </blockquote>
 
-    <li><strong>Key Personnel and AI</strong> — with Jon Woo<br>
-    </li>
-  </ul>
-</section>
+      <h3 style="margin-top:16px;">Teaching Assistant</h3>
+      <ul>
+        <li><strong>Intermediate Financial Accounting (ACTG 315)</strong> — Fall 2022, Spring 2023, Fall 2025</li>
+        <li><strong>Introduction to Financial Accounting (ACTG 210)</strong> — Spring 2023–2025</li>
+        <li><strong>Introduction to Managerial Accounting (ACTG 211)</strong> — Spring 2025</li>
+        <li><strong>Accounting Information Systems (ACTG 474)</strong> — Fall 2024</li>
+        <li><strong>Business Law I: Commercial Transactions (ACTG 355)</strong> — Spring 2024</li>
+        <li><strong>Ethical Environment of Business (ACTG 470)</strong> — Spring 2024</li>
+      </ul>
 
-    <section class="card">
-  <h2>Teaching</h2>
-  <p>
-    I strive to make accounting intuitive, interactive, and connected to real decisions. 
-    My teaching emphasizes the logic behind accounting systems—helping students see how financial reporting 
-    supports communication, discipline, and trust in business relationships. 
-    I also integrate data analytics and AI-driven tools to prepare students for the evolving business environment.
-  </p>
-
-  <h3>Instructor</h3>
-  <ul>
-    <li><strong>Introduction to Financial Accounting (ACTG 210)</strong> — Fall 2023<br>
-      Instructor Rating: 4.68 / 5.00 · Course Rating: 4.74 / 5.00 (Response Ratio: 38 / 39)
-    </li>
-     <p style="margin-top:10px; color:var(--muted); font-weight:600;">
-    Selected student comments (Introduction to Financial Accounting, Fall 2023):
-  </p>
-  <blockquote style="margin-top:6px; border-left:4px solid var(--border); padding-left:12px; color:var(--muted); font-style:italic;">
-    <p>"Almost each lesson was beneficial for my well being" </p>
-    <p>“Instructor is very professional, encourage students to ask questions, and always available to help understand challenging topic.”</p>
-    <p>“Professor Lee's lectures facilitated discussion by encouraging students to ask questions, which was most beneficial to me. Unlike other
-courses, I had the opportunity to practice problems in class, which made the class more engaging and improved my confidence in the
-subject. By doing practice problems in class instead of passively watching a professor do problems like in other classes, I felt prepared
-when it came time to do my homework. Furthermore, I appreciated Professor Lee's decision to devote adequate class time to reviewing
-past exams. Instead of handing the graded exams to us and asking for it back one minute later, he made an effort to clear up any
-conceptual errors we may've had before asking us to return the exams.”</p>
-    <p>“This class helps me to throughly learnt the details about the three major of financial statements which include income stamens, balance
-sheet and state of cash flows. The accounting knowledge I gained in this class has laid a solid foundation for my future professional
-courses. The professor is really responsible for student and able to capture my attention more effectively in class.”</p>
-    <p>“Professor Lee has stood out in a way that will be a lasting impression on me for years to come. I struggled at various points with pace and
-professor Lee emailed me directly and stopped me after class to speak with me. He was encouraging and shared in inspiring ways.”</p>
-  </blockquote>
-  </ul>
-
-  <h3 style="margin-top:16px;">Teaching Assistant</h3>
-  <ul>
-    <li><strong>Intermediate Financial Accounting (ACTG 315)</strong> — Fall 2022, Spring 2023, Fall 2025</li>
-    <li><strong>Introduction to Financial Accounting (ACTG 210)</strong> — Spring 2023–2025</li>
-    <li><strong>Introduction to Managerial Accounting (ACTG 211)</strong> — Spring 2025</li>
-    <li><strong>Accounting Information Systems (ACTG 474)</strong> — Fall 2024</li>
-    <li><strong>Business Law I: Commercial Transactions (ACTG 355)</strong> — Spring 2024</li>
-    <li><strong>Ethical Environment of Business (ACTG 470)</strong> — Spring 2024</li>
-  </ul>
-
-  <p style="color:var(--muted);margin-top:8px;">
-    Responsibilities included leading weekly review sessions, holding office hours, grading, and coordinating 
-    exam administration across large undergraduate classes. I also supported course design and created quiz questions.
-  </p>
+      <p style="color:var(--muted);margin-top:8px;">
+        Responsibilities included leading weekly review sessions, holding office hours, grading, and coordinating 
+        exam administration across large undergraduate classes. I also supported course design and created quiz questions.
+      </p>
 
       <h3 style="margin-top:16px;">Teaching Methodology and Innovation</h3>
-<p>
-  I continuously experiment with ways to make accounting intuitive, relevant, and memorable. 
-</p>
-      
+      <p>I continuously experiment with ways to make accounting intuitive, relevant, and memorable.</p>
       <p>
-  In my previous course, I designed an optional <strong><em>Financial Statement Replication Project</em></strong> 
-  that allowed students to reconstruct a real firm’s financial statements from raw disclosures 
-  and assess how accounting choices influence reported outcomes. This exercise encouraged 
-  independent thinking and helped students see how accounting information translates into 
-  economic insight.
-</p>
+        In my previous course, I designed an optional <strong><em>Financial Statement Replication Project</em></strong> 
+        that allowed students to reconstruct a real firm’s financial statements from raw disclosures 
+        and assess how accounting choices influence reported outcomes. This exercise encouraged 
+        independent thinking and helped students see how accounting information translates into 
+        economic insight.
+      </p>
+      <p>
+        Looking ahead, I plan to develop a <strong><em>Punk Rock Accounting project</em></strong>—a creative framework 
+        for reimagining the tone of the classroom. Accounting, much like punk rock, is exciting, 
+        passionate, and sometimes misunderstood as noisy or old-fashioned. Yet its enduring value 
+        lies in authenticity, transparency, and hope for a better future. By opening class 
+        sessions with punk rock music, I aim to set an atmosphere that captures this spirit: 
+        structured but energetic, technical yet expressive, and grounded in a belief that 
+        accounting—like punk—can still inspire change.
+        <br><br>
+        <a href="https://open.spotify.com/playlist/4vlebz2aM7EuuqeKyLI0pQ?si=da6e561911c946c0" target="_blank">
+          🎵 View my Punk Rock Accounting playlist
+        </a>
+      </p>
+    </section>
 
-<p>
-  Looking ahead, I plan to develop a <strong><em>Punk Rock Accounting project</em></strong>—a creative framework 
-  for reimagining the tone of the classroom. Accounting, much like punk rock, is exciting, 
-  passionate, and sometimes misunderstood as noisy or old-fashioned. Yet its enduring value 
-  lies in authenticity, transparency, and hope for a better future. By opening class 
-  sessions with punk rock music, I aim to set an atmosphere that captures this spirit: 
-  structured but energetic, technical yet expressive, and grounded in a belief that 
-  accounting—like punk—can still inspire change.
-  <br><br>
-  <a href="https://open.spotify.com/playlist/4vlebz2aM7EuuqeKyLI0pQ?si=da6e561911c946c0" target="_blank">
-    🎵 View my Punk Rock Accounting playlist
-  </a>
-</p>
-</section>
-
-    <section class="card">
+    <section class="card" id="contact">
       <h2>Contact</h2>
       <p>Email: <a href="mailto:jlee884@uic.edu">jlee884@uic.edu</a><br>
          Department of Accounting, University of Illinois Chicago<br>
